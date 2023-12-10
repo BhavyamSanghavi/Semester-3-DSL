@@ -19,22 +19,18 @@ def insertionsort(a):
             print(i, " Pass=", a)
 
 def shellsort(a):
-    gap=len(a)//2
-    pas = 1
-    while(gap>0):
-        j=gap
-        while(j<len(a)):
-            i=j-gap
-            while(i>=0):
-                if a[i+gap]>a[i]:
-                    break
-                else:
-                    a[i+gap],a[i]=a[i],a[i+gap]
-                i-=gap
-            j+=1
-        gap=gap//2
-        print(pas, " Pass=", a)
-        pas+=1
+    n = len(a)
+    gap = n // 2
+    while gap > 0:
+        for i in range(gap, n):
+            temp = a[i]
+            j = i
+            while j >= gap and a[j - gap] > temp:
+                a[j] = a[j - gap]
+                j -= gap
+            a[j] = temp
+        gap //= 2
+    print("Sorted=",a)
 
 def selectionsort(a):
     for i in range(len(a)):

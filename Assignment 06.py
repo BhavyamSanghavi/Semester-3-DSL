@@ -1,12 +1,20 @@
-def partition(array, low, high):
-    pivot = array[high]
-    i = low - 1
-    for j in range(low, high):
-        if array[j] <= pivot:
-            i = i + 1
-            array[i], array[j] = array[j], array[i]
-    array[i + 1], array[high] = array[high], array[i + 1]
-    return i + 1
+def partition(arr, low, high):
+    pivot = arr[low]
+    i = low + 1
+    j = high
+
+    while True:
+        while i <= j and arr[i] <= pivot:
+            i += 1
+        while i <= j and arr[j] > pivot:
+            j -= 1
+        if i <= j:
+            arr[i], arr[j] = arr[j], arr[i]
+        else:
+            break
+
+    arr[low], arr[j] = arr[j], arr[low]
+    return j
 
 def quickSort(array, low, high):
     if low < high:
